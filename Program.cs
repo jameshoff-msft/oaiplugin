@@ -10,6 +10,10 @@ using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         .AddDebug();
 });
 
+Environment.SetEnvironmentVariable("Global:LlmService", "AzureOpenAI");
+Environment.SetEnvironmentVariable("OpenAI:ModelType", "chat-completion");
+
+
 // Create kernel
 var deployment = "gpt-35-turbo";
 var endpoint = "";
