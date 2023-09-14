@@ -6,7 +6,7 @@ namespace services
 {
     public class CogSearchResult
     {
-        public string? text { get; set; }
+        public string? content { get; set; }
     }
     class CogSearch
     {
@@ -32,7 +32,7 @@ namespace services
             foreach (SearchResult<CogSearchResult> result in results.GetResults())
             {
                 CogSearchResult doc = result.Document;
-                return doc.text;
+                return doc.content;
                 //Console.WriteLine($"{doc.text}");
             }
             return null;
@@ -40,7 +40,6 @@ namespace services
 
         public CogSearchResult[] VectorSearch(string query, IReadOnlyList<float> embedding, int numResults)
         {
-            //IReadOnlyList<float> vectorizedResult = VectorSearchEmbeddings.SearchVectorizeDescription; // "Top hotels in town"
 
             Uri endpoint = new Uri(_endpoint);
             AzureKeyCredential credential = new AzureKeyCredential(_apikey);
@@ -50,7 +49,7 @@ namespace services
                     query,
                     new SearchOptions
                     {
-                        Vectors = { new() { Value = embedding, KNearestNeighborsCount = numResults, Fields = { "vector" } } },
+                        Vectors = { new() { Value = embedding, KNearestNeighborsCount = numResults, Fields = { "contentVector" } } },
                     });
 
             Console.WriteLine($"Simple Hybrid Search Results:");

@@ -31,5 +31,9 @@ Console.WriteLine(result);
 var csPlugin = kernel.ImportSkill(new Plugins.CogServicesPlugin.CogServices(), "CogServicesPlugin");
 
 // Make a request that runs the Sqrt function
-var result2 = await kernel.RunAsync("Who owns the rfp?", csPlugin["VectorSearch"]);
+var result2 = await kernel.RunAsync("Are there presentation materials?", csPlugin["VectorSearch"]);
 Console.WriteLine(result2);
+
+// Make a request that runs the Sqrt function
+var result3 = await kernel.RunAsync("Are there presentation materials?", csPlugin["UseYourOwnData"]);
+Console.WriteLine(result3);
